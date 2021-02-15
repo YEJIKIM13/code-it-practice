@@ -16,6 +16,15 @@ node_2 = Node(5)
 node_3 = Node(7)
 tail_node = Node(11)
 
+# 노드들을 연결
+head_node.next = node_1
+node_1.next = node_2
+node_2.next = node_3
+node_3.next = tail_node
 
+# 노드 순서대로 출력
+iterator = head_node # iterate - 반복, 반복문으로 리스트를 돌 때 도움을 주는 역할을 하는 값
 
-
+while iterator is not None:
+    print(iterator.data)
+    iterator = iterator.next # 갱신
