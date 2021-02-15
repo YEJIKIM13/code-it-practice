@@ -19,6 +19,20 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    def delete_after(self, previous_node):
+        """링크드 리스트 삭제 연산. 주어진 노드 뒤 노드를 삭제한다"""
+        data = previous_node.next.data
+
+        # 지우려는 노드가 tail 노드일 때
+        if previous_node.next is self.tail:
+            previous_node.next = None
+            self.tail = previous_node
+        # 두 노드 사이 노드를 지울 때
+        else:
+            previous_node.next = previous_node.next.next
+
+        return data
+
     def insert_after(self, previous_node, data):
         """링크드 리스트 주어진 노드 뒤 삽입 연산 메소드"""
         new_node = Node(data)  # 새 데이터 담을 노드 새로 하나 만들어주기
@@ -78,16 +92,14 @@ my_list.append(5)
 my_list.append(7)
 my_list.append(11)
 
-# 링크드 리스트에 삽입
-# 인덱스 2에 있는 노드의 다음 순서에 151을 삽입
-node_2 = my_list.find_node_at(2)  # 인덱스 2에 있는 노드 접근
-my_list.insert_after(node_2, 151)  # 2번 인덱스에 있는 node_2와 데이터 151을 넘겨줌
-
-# 전체 링크드 리스트 출력
 print(my_list)
 
-# 헤드노드는 인스턴스 변수이기 때문에 메소드를 안 써도 가지고 올 수 있다.
-head_node = my_list.head  # 헤드 노드 접근
-my_list.insert_after(head_node, 9)  # 헤드 노드 뒤에 9 삽입
+# 노드 하나에 접근해서 delete_after 메소드의 파라미터로 넘겨보자
+node_2 = my_list.find_node_at(2)  # 인덱스 2 노드 접근
+my_list.delete_after(node_2)  # 인덱스 2 뒤 데이터 삭제
 
+print(my_list)
+
+second_to_last_node = my_list.find_node_at(2)  # 맨 끝에서 두 번째 노드 접근
+print(my_list.delete_after(second_to_last_node))  # tail 노드 삭제
 print(my_list)
