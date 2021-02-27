@@ -1,6 +1,7 @@
 from collections import deque
 
 stack = deque()
+# stack = [] 으로 해도 무방! 시간 복잡도 비슷
 
 # 스택 맨 끝에 데이터 추가
 stack.append("L")
